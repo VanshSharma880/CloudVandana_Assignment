@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select {
+            width: 93%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 6px;
+            margin-bottom: 16px;
+        }
+
+        input[type="checkbox"] {
+            margin-top: 10px;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #e94b4b;
+        }
+    </style>
+    <title>Survay Form</title>
+</head>
+<body>
+    <div class="container">
+        <form id="surveyForm">
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="firstname" required>
+
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lastname" required>
+
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required><br>
+
+           <br> <label for="country">Country</label>
+            <select id="country" name="country" required>
+                <option value="">Select Country</option>
+                <option value="Australia">India</option>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+                <option value="Canada">Canada</option>
+                <option value="Australia">Australia</option>
+            </select>
+
+            <label>Gender</label><br>
+            <input type="checkbox" id="male" name="gender" value="male">
+            <label for="male">Male</label><br>
+            <input type="checkbox" id="female" name="gender" value="female">
+            <label for="female">Female</label><br>
+
+            <br><label for="profession">Profession</label>
+            <input type="text" id="profession" name="profession" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Mobile Number</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('surveyForm');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            let dataObject = {};
+            formData.forEach((value, key) => {
+                dataObject[key] = value;
+            });
+
+            let displayText = '';
+            for (const [key, value] of Object.entries(dataObject)) {
+                displayText += `${key}: ${value}\n`;
+            }
+
+            alert(displayText);
+            form.reset();
+        });
+    </script>
+</body>
+</html>
